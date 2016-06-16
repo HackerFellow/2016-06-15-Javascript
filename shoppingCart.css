@@ -1,0 +1,15 @@
+.flex-container {
+	display: -webkit-flex;
+	display: flex;
+	flex-wrap: wrap;
+	width: 30%;
+	background-color: lightgrey;
+	text-align: center;
+}
+
+.flex-item {
+	background-color: green;
+	width: 100px;
+	height: 100px;
+	margin: 10px;
+}
