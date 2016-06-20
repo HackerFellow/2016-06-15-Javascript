@@ -10,6 +10,11 @@ var items = [
 	{name: "Apple6", price: 4.42}
 	];
 
+$("#customInput").on("click", function(){
+	var name = $("#nameInput").val();
+	var price = $("#priceInput").val();
+	addToCartArgs({name: name, price: price});
+});
 
 $("#total").val(0);
 items.forEach(function(item,id){
@@ -28,6 +33,9 @@ items.forEach(function(item,id){
 
 function addToCart() {
 	var item = JSON.parse(this.value);
+	addToCartArgs(item);
+}
+function addToCartArgs(item){
 	$( "<button/>", {
 		type: "button",
 		text: "Remove From Cart",
