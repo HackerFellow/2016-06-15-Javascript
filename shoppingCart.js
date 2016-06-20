@@ -18,24 +18,26 @@ items.forEach(function(item,id){
 	$( "<button/>", {
 		type: "button",
 		text: "Add to Cart",
-		value: id,
-		click: function() {
-			$( "<button/>", {
-				type: "button",
-				text: "Remove From Cart",
-				value: id,
-				click: function() {
-					$("#total").val(Number($("#total").val()) - items[this.value].price);
-					this.parentNode.remove();
-				}//End remobve button function
-			}).appendTo($( "<div/>", {
-				"class": "flex-item",
-				text: item.name + ": " + item.price
-			}).appendTo("#cart"));
-			$("#total").val(Number($("#total").val()) + items[this.value].price);
-		}//END add button function
+		value: JSON.stringify(item),
+		click: addToCart
 	}).appendTo($( "<div/>", {
 		"class": "flex-item",
 		text: item.name + ": " + item.price
 	}).appendTo("#itemsToBuy"));
 });
+
+function addToCart() {
+	var item = JSON.parse(this.value);
+	$( "<button/>", {
+		type: "button",
+		text: "Remove From Cart",
+		click: function() {
+			$("#total").val(Number($("#total").val()) - item.price);
+			this.parentNode.remove();
+		}//End remobve button function
+	}).appendTo($( "<div/>", {
+		"class": "flex-item",
+		text: item.name + ": " + item.price
+	}).appendTo("#cart"));
+	$("#total").val(Number($("#total").val()) + item.price);
+}//END add button function
